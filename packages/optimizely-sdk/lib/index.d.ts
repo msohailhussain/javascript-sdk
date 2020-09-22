@@ -16,8 +16,7 @@
 
 declare module '@optimizely/optimizely-sdk' {
   import { LogHandler, ErrorHandler } from '@optimizely/js-sdk-logging';
-  import { Experiment, Variation } from '@optimizely/optimizely-sdk/lib/core/project_config';
-  import { UserProfileService, UserAttributes } from '@optimizely/optimizely-sdk/lib/core/decision_service';
+  import { UserProfileService } from '@optimizely/optimizely-sdk/lib/core/decision_service';
   import * as enums from '@optimizely/optimizely-sdk/lib/utils/enums';
   import * as logging from '@optimizely/optimizely-sdk/lib/plugins/logger';
   export { enums, logging };
@@ -37,6 +36,12 @@ declare module '@optimizely/optimizely-sdk' {
     updateInterval?: number;
     urlTemplate?: string;
     datafileAccessToken?: string;
+  }
+
+  export type UserAttributes = {
+    // TODO[OASIS-6649]: Don't use any type
+    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+    [name: string]: any;
   }
 
   // The options object given to Optimizely.createInstance.

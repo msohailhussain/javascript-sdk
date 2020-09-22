@@ -16,7 +16,8 @@
 
 declare module '@optimizely/optimizely-sdk/lib/core/decision_service' {
   import { LogHandler } from '@optimizely/js-sdk-logging';
-  import { ProjectConfig, Experiment, Variation, FeatureFlag } from '@optimizely/optimizely-sdk/lib/core/project_config';
+  import { ProjectConfig } from '@optimizely/optimizely-sdk/lib/core/project_config';
+  import { Experiment, Variation, UserAttributes } from '@optimizely/optimizely-sdk';
 
   export function createDecisionService(options: Options): DecisionService;
 
@@ -25,15 +26,12 @@ declare module '@optimizely/optimizely-sdk/lib/core/decision_service' {
     save(profile: UserProfile): void;
   }
 
-  export type UserAttributes = {
-    // TODO[OASIS-6649]: Don't use any type
-    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-    [name: string]: any;
-  }
+
+
 
   interface DecisionService {
     getVariation(experimentKey: string, userId: string, attributes?: UserAttributes): string | null;
-    getVariationForFeature(configObj: ProjectConfig, feature: FeatureFlag, userId: string, attributes: unknown): Decision;
+    getVariationForFeature(configObj: ProjectConfig, feature: import('../project_config/entities').FeatureFlag, userId: string, attributes: unknown): Decision;
     removeForcedVariation(userId: unknown, experimentId: string, experimentKey: string): void;
     getForcedVariation(configObj: ProjectConfig, experimentKey: string, userId: string): string | null;
     setForcedVariation(configObj: ProjectConfig, experimentKey: string, userId: string, variationKey: unknown): boolean;
