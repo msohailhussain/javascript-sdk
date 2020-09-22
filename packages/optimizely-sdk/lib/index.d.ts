@@ -16,6 +16,8 @@
 
 declare module '@optimizely/optimizely-sdk' {
   import { LogHandler, ErrorHandler } from '@optimizely/js-sdk-logging';
+  import { Experiment, Variation } from '@optimizely/optimizely-sdk/lib/core/project_config';
+  import { UserProfileService, UserAttributes } from '@optimizely/optimizely-sdk/lib/core/decision_service';
   import * as enums from '@optimizely/optimizely-sdk/lib/utils/enums';
   import * as logging from '@optimizely/optimizely-sdk/lib/plugins/logger';
   export { enums, logging };
@@ -135,11 +137,6 @@ declare module '@optimizely/optimizely-sdk' {
     dispatchEvent: (event: Event, callback: () => void) => void;
   }
 
-  export interface UserProfileService {
-    lookup: (userId: string) => UserProfile;
-    save: (profile: UserProfile) => void;
-  }
-
   // NotificationCenter-related types
   export interface NotificationCenter {
     addNotificationListener<T extends ListenerPayload>(
@@ -164,12 +161,6 @@ declare module '@optimizely/optimizely-sdk' {
     logEvent: Event;
   }
 
-  export type UserAttributes = {
-    // TODO[OASIS-6649]: Don't use any type
-    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-    [name: string]: any;
-  };
-
   export type EventTags = {
     [key: string]: string | number | boolean;
   };
@@ -179,7 +170,7 @@ declare module '@optimizely/optimizely-sdk' {
     eventTags: EventTags;
     logEvent: Event;
   }
-
+  
   export interface Experiment {
     id: string;
     key: string;
