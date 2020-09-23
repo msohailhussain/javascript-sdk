@@ -15,10 +15,11 @@
  * limitations under the License.
  */
 
-import { UserAttributes, Experiment, Variation } from '@optimizely/optimizely-sdk';
-import { LogHandler, ErrorHandler } from '@optimizely/js-sdk-logging';
 
 declare module '@optimizely/optimizely-sdk/lib/core/notification_center' {
+  import { UserAttributes, Experiment, Variation } from '@optimizely/optimizely-sdk';
+  import { LogHandler, ErrorHandler } from '@optimizely/js-sdk-logging';
+
   export enum NOTIFICATION_TYPES {
     ACTIVATE = 'ACTIVATE:experiment, user_id,attributes, variation, event',
     DECISION = 'DECISION:type, userId, attributes, decisionInfo',
