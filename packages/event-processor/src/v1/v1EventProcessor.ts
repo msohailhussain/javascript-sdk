@@ -49,6 +49,7 @@ export class LogTierV1EventProcessor implements EventProcessor {
     dispatcher: EventDispatcher
     flushInterval?: number
     batchSize?: number
+    maxQueueSize?: number
     notificationCenter?: NotificationCenter
   }) {
     this.dispatcher = dispatcher
