@@ -84,6 +84,7 @@ export var buildImpressionEvent = function(config) {
       key: variationKey,
     },
 
+    ruleKey: experimentKey,
     flagKey: flagKey,
     ruleType: ruleType,
   };

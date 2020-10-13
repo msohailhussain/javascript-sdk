@@ -116,6 +116,7 @@ describe('lib/event_builder/event_helpers', function() {
             key: 'var1',
           },
 
+          ruleKey: "exp1",
           flagKey: 'flagkey1',
           ruleType: 'experiment',
         });
@@ -187,6 +188,7 @@ describe('lib/event_builder/event_helpers', function() {
             key: 'var1',
           },
 
+          ruleKey: "exp1",
           flagKey: 'flagkey1',
           ruleType: 'experiment',
         });

@@ -64,6 +64,7 @@ interface ImpressionEvent {
       key: string;
   } | null;
 
+  ruleKey: string,
   flagKey: string,
   ruleType: string,
 }
