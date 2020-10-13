@@ -233,7 +233,15 @@ export default class Optimizely {
           return variationKey;
         }
 
-        this.sendImpressionEvent(experimentKey, variationKey, userId, attributes);
+        this.sendImpressionEvent(
+          experimentKey,
+          variationKey,
+          '',
+          experimentKey,
+          enums.DECISION_SOURCES.EXPERIMENT,
+          userId,
+          attributes
+        );
 
         return variationKey;
       } catch (ex) {
@@ -262,9 +270,20 @@ export default class Optimizely {
    * @param {string}         experimentKey  Key of experiment that was activated
    * @param {string}         variationKey   Key of variation shown in experiment that was activated
    * @param {string}         userId         ID of user to whom the variation was shown
+   * @param {string}         flagKey        Key for a feature flag
+   * @param {string}         ruleKey        Key for an experiment
+   * @param {string}         ruleType       Type for the source
    * @param {UserAttributes} attributes     Optional user attributes
    */
-  private sendImpressionEvent(experimentKey: string, variationKey: string, userId: string, attributes?: UserAttributes): void {
+  private sendImpressionEvent(
+    experimentKey: string,
+    variationKey: string,
+    flagKey: string,
+    ruleKey: string,
+    ruleType: string,
+    userId: string,
+    attributes?: UserAttributes
+  ): void {
     const configObj = this.projectConfigManager.getConfig();
     if (!configObj) {
       return;
@@ -273,6 +292,9 @@ export default class Optimizely {
     const impressionEvent = buildImpressionEvent({
       experimentKey: experimentKey,
       variationKey: variationKey,
+      flagKey: flagKey,
+      ruleKey: ruleKey,
+      ruleType: ruleType,
       userId: userId,
       userAttributes: attributes,
       clientEngine: this.clientEngine,
@@ -641,6 +663,26 @@ export default class Optimizely {
       const decision = this.decisionService.getVariationForFeature(configObj, feature, userId, attributes);
       const variation = decision.variation;
 
+      if (
+        decision.decisionSource === DECISION_SOURCES.ROLLOUT &&
+        projectConfig.getSendFlagDecisionsValue(configObj) === true &&
+        decision.variation !== null
+      ) {
+        let experimentKey = '';
+        if (decision.experiment !== null) {
+          experimentKey = decision.experiment.key;
+        }
+        this.sendImpressionEvent(
+          experimentKey,
+          decision.variation.key,
+          feature.key,
+          experimentKey,
+          decision.decisionSource,
+          userId,
+          attributes
+        );
+      }
+
       if (variation) {
         featureEnabled = variation.featureEnabled;
         if (
@@ -653,7 +695,15 @@ export default class Optimizely {
             variationKey: decision.variation.key,
           };
           // got a variation from the exp, so we track the impression
-          this.sendImpressionEvent(decision.experiment.key, decision.variation.key, userId, attributes);
+          this.sendImpressionEvent(
+            decision.experiment.key,
+            decision.variation.key,
+            feature.key,
+            decision.experiment.key,
+            decision.decisionSource,
+            userId,
+            attributes
+          );
         }
       }
 

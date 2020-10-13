@@ -603,6 +603,15 @@ export var tryCreatingProjectConfig = function(config) {
   };
 };
 
+/**
+ * Get the send flag decisions value
+ * @param  {ProjectConfig}   projectConfig
+ * @return {boolean}         A boolean value that indicates if we should send flag decisions
+ */
+export var getSendFlagDecisionsValue = function(projectConfig) {
+  return projectConfig.sendFlagDecisions;
+}
+
 export default {
   createProjectConfig: createProjectConfig,
   getExperimentId: getExperimentId,
@@ -622,6 +631,7 @@ export default {
   getVariableForFeature: getVariableForFeature,
   getVariableValueForVariation: getVariableValueForVariation,
   getTypeCastValue: getTypeCastValue,
+  getSendFlagDecisionsValue: getSendFlagDecisionsValue,
   getAudiencesById: getAudiencesById,
   eventWithKeyExists: eventWithKeyExists,
   isFeatureExperiment: isFeatureExperiment,
