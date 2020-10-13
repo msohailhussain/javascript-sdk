@@ -42,7 +42,7 @@ export function isRunning(configObj: ProjectConfig, experimentKey: string): bool
  * @param  {string}        variationKey     The variation key
  * @return {string}                         the variation ID
  */
-export function getVariationIdFromExperimentAndVariationKey(configObj: ProjectConfig, experimentKey: string, variationKey: string): string;
+export function getVariationIdFromExperimentAndVariationKey(configObj: ProjectConfig, experimentKey: string, variationKey: string | undefined): string;
 
 /**
  * Get experiment ID for the provided experiment key

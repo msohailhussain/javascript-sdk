@@ -237,7 +237,6 @@ export default class Optimizely {
           experimentKey,
           variationKey,
           '',
-          experimentKey,
           enums.DECISION_SOURCES.EXPERIMENT,
           userId,
           attributes
@@ -277,9 +276,9 @@ export default class Optimizely {
    */
   private sendImpressionEvent(
     experimentKey: string,
-    variationKey: string,
+    variationKey: string | undefined,
     flagKey: string,
-    ruleKey: string,
+    // ruleKey: string,
     ruleType: string,
     userId: string,
     attributes?: UserAttributes
@@ -293,7 +292,7 @@ export default class Optimizely {
       experimentKey: experimentKey,
       variationKey: variationKey,
       flagKey: flagKey,
-      ruleKey: ruleKey,
+      // ruleKey: ruleKey,
       ruleType: ruleType,
       userId: userId,
       userAttributes: attributes,
@@ -313,7 +312,7 @@ export default class Optimizely {
    * @param {string}         userId         ID of user to whom the variation was shown
    * @param {UserAttributes} attributes     Optional user attributes
    */
-  private emitNotificationCenterActivate(experimentKey: string, variationKey: string, userId: string, attributes?: UserAttributes): void {
+  private emitNotificationCenterActivate(experimentKey: string, variationKey: string | undefined, userId: string, attributes?: UserAttributes): void {
     const configObj = this.projectConfigManager.getConfig();
     if (!configObj) {
       return;
@@ -334,7 +333,7 @@ export default class Optimizely {
     const impressionEvent = getImpressionEvent(impressionEventOptions);
     const experiment = configObj.experimentKeyMap[experimentKey];
     let variation;
-    if (experiment && experiment.variationKeyMap) {
+    if (experiment && experiment.variationKeyMap && variationKey) {
       variation = experiment.variationKeyMap[variationKey];
     }
     this.notificationCenter.sendNotifications(NOTIFICATION_TYPES.ACTIVATE, {
@@ -665,8 +664,7 @@ export default class Optimizely {
 
       if (
         decision.decisionSource === DECISION_SOURCES.ROLLOUT &&
-        projectConfig.getSendFlagDecisionsValue(configObj) === true &&
-        decision.variation !== null
+        projectConfig.getSendFlagDecisionsValue(configObj) === true
       ) {
         let experimentKey = '';
         if (decision.experiment !== null) {
@@ -674,9 +672,8 @@ export default class Optimizely {
         }
         this.sendImpressionEvent(
           experimentKey,
-          decision.variation.key,
+          decision.variation?.key,
           feature.key,
-          experimentKey,
           decision.decisionSource,
           userId,
           attributes
@@ -699,7 +696,6 @@ export default class Optimizely {
             decision.experiment.key,
             decision.variation.key,
             feature.key,
-            decision.experiment.key,
             decision.decisionSource,
             userId,
             attributes
