@@ -23,7 +23,7 @@ interface ImpressionOptions {
   clientVersion: string;
   configObj: ProjectConfig;
   experimentId: string;
-  experimentKey: string;
+  ruleKey: string;
   flagKey: string;
   ruleType: string;
   eventKey?: string;

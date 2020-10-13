@@ -335,7 +335,7 @@ export default class Optimizely {
       clientVersion: this.clientVersion,
       configObj: configObj,
       experimentId: experimentId,
-      experimentKey: experimentKey,
+      ruleKey: experimentKey,
       flagKey: flagKey,
       ruleType: ruleType,
       userId: userId,
