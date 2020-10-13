@@ -64,12 +64,8 @@ interface ImpressionEvent {
       key: string;
   } | null;
 
-  metadata: {
-    flagKey: string;
-    ruleKey: string;
-    ruleType: string;
-    variationKey: string;
-  };
+  flagKey: string,
+  ruleType: string,
 }
 
 interface ConversionConfig {

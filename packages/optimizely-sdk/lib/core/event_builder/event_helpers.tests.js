@@ -115,12 +115,9 @@ describe('lib/event_builder/event_helpers', function() {
             id: 'var1-id',
             key: 'var1',
           },
-          metadata: {
-            flagKey: 'flagkey1',
-            ruleKey: 'exp1',
-            ruleType: 'experiment',
-            variationKey: 'var1',
-          },
+
+          flagKey: 'flagkey1',
+          ruleType: 'experiment',
         });
       });
     });
@@ -189,12 +186,9 @@ describe('lib/event_builder/event_helpers', function() {
             id: 'var1-id',
             key: 'var1',
           },
-          metadata: {
-            flagKey: 'flagkey1',
-            ruleKey: 'exp1',
-            ruleType: 'experiment',
-            variationKey: 'var1',
-          },
+
+          flagKey: 'flagkey1',
+          ruleType: 'experiment',
         });
       });
     });

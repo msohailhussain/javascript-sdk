@@ -92,15 +92,24 @@ function getCommonEventParams(options) {
  * @param  {Object} configObj    Object representing project configuration
  * @param  {string} experimentId ID of experiment for which impression needs to be recorded
  * @param  {string} variationId  ID for variation which would be presented to user
+ * @param  {string} ruleKey      Key of experiment for which impression needs to be recorded
+ * @param  {string} ruleType     Type for the decision source
+ * @param  {string} flagKey      Key for a feature flag
  * @return {Object}              Impression event params
  */
-function getImpressionEventParams(configObj, experimentId, variationId) {
+function getImpressionEventParams(configObj, experimentId, variationId, ruleKey, ruleType, flagKey) {
   var impressionEventParams = {
     decisions: [
       {
         campaign_id: projectConfig.getLayerId(configObj, experimentId),
         experiment_id: experimentId,
         variation_id: variationId,
+        metadata: {
+          flag_key: flagKey,
+          rule_key: ruleKey,
+          rule_type: ruleType,
+          variation_key: projectConfig.getVariationKeyFromId(configObj, variationId),
+        }
       },
     ],
     events: [
@@ -163,6 +172,9 @@ function getVisitorSnapshot(configObj, eventKey, eventTags, logger) {
  * @param  {string} options.experimentId  Experiment for which impression needs to be recorded
  * @param  {string} options.userId        ID for user
  * @param  {string} options.variationId   ID for variation which would be presented to user
+ * @param  {string} options.ruleKey       Key of an experiment for which impression needs to be recorded
+ * @param  {string} options.ruleType      Type for the decision source
+ * @param  {string} options.flagKey       Key for a feature flag
  * @return {Object}                       Params to be used in impression event logging endpoint call
  */
 export var getImpressionEvent = function(options) {
@@ -173,7 +185,14 @@ export var getImpressionEvent = function(options) {
   var commonParams = getCommonEventParams(options);
   impressionEvent.url = ENDPOINT;
 
-  var impressionEventParams = getImpressionEventParams(options.configObj, options.experimentId, options.variationId);
+  var impressionEventParams = getImpressionEventParams(
+    options.configObj,
+    options.experimentId,
+    options.variationId,
+    options.ruleKey,
+    options.ruleType,
+    options.flagKey
+  );
   // combine Event params into visitor obj
   commonParams.visitors[0].snapshots.push(impressionEventParams);
 

@@ -271,7 +271,7 @@ export default class Optimizely {
    * @param {string}         userId         ID of user to whom the variation was shown
    * @param {string}         flagKey        Key for a feature flag
    * @param {string}         ruleKey        Key for an experiment
-   * @param {string}         ruleType       Type for the source
+   * @param {string}         ruleType       Type for the decision source
    * @param {UserAttributes} attributes     Optional user attributes
    */
   private sendImpressionEvent(
@@ -302,17 +302,26 @@ export default class Optimizely {
     });
     // TODO is it okay to not pass a projectConfig as second argument
     this.eventProcessor.process(impressionEvent);
-    this.emitNotificationCenterActivate(experimentKey, variationKey, userId, attributes);
+    this.emitNotificationCenterActivate(experimentKey, variationKey, flagKey, ruleType, userId, attributes);
   }
 
   /**
    * Emit the ACTIVATE notification on the notificationCenter
-   * @param {string}         experimentKey  Key of experiment that was activated
-   * @param {string}         variationKey   Key of variation shown in experiment that was activated
-   * @param {string}         userId         ID of user to whom the variation was shown
-   * @param {UserAttributes} attributes     Optional user attributes
+   * @param  {string}         experimentKey  Key of experiment that was activated
+   * @param  {string}         variationKey   Key of variation shown in experiment that was activated
+   * @param  {string}         flagKey        Key for a feature flag
+   * @param  {string}         ruleType       Type for the decision source
+   * @param  {string}         userId         ID of user to whom the variation was shown
+   * @param  {UserAttributes} attributes     Optional user attributes
    */
-  private emitNotificationCenterActivate(experimentKey: string, variationKey: string | undefined, userId: string, attributes?: UserAttributes): void {
+  private emitNotificationCenterActivate(
+    experimentKey: string,
+    variationKey: string | undefined,
+    flagKey: string,
+    ruleType: string,
+    userId: string,
+    attributes?: UserAttributes
+  ): void {
     const configObj = this.projectConfigManager.getConfig();
     if (!configObj) {
       return;
@@ -326,6 +335,9 @@ export default class Optimizely {
       clientVersion: this.clientVersion,
       configObj: configObj,
       experimentId: experimentId,
+      experimentKey: experimentKey,
+      flagKey: flagKey,
+      ruleType: ruleType,
       userId: userId,
       variationId: variationId,
       logger: this.logger,
