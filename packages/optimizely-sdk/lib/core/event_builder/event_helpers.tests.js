@@ -67,6 +67,8 @@ describe('lib/event_builder/event_helpers', function() {
         var result = buildImpressionEvent({
           configObj: configObj,
           experimentKey: 'exp1',
+          flagKey: 'flagkey1',
+          ruleType: 'experiment',
           variationKey: 'var1',
           userId: 'user1',
           userAttributes: {
@@ -113,6 +115,12 @@ describe('lib/event_builder/event_helpers', function() {
             id: 'var1-id',
             key: 'var1',
           },
+          metadata: {
+            flagKey: 'flagkey1',
+            ruleKey: 'exp1',
+            ruleType: 'experiment',
+            variationKey: 'var1',
+          },
         });
       });
     });
@@ -133,6 +141,8 @@ describe('lib/event_builder/event_helpers', function() {
         var result = buildImpressionEvent({
           configObj: configObj,
           experimentKey: 'exp1',
+          flagKey: 'flagkey1',
+          ruleType: 'experiment',
           variationKey: 'var1',
           userId: 'user1',
           userAttributes: {
@@ -178,6 +188,12 @@ describe('lib/event_builder/event_helpers', function() {
           variation: {
             id: 'var1-id',
             key: 'var1',
+          },
+          metadata: {
+            flagKey: 'flagkey1',
+            ruleKey: 'exp1',
+            ruleType: 'experiment',
+            variationKey: 'var1',
           },
         });
       });
