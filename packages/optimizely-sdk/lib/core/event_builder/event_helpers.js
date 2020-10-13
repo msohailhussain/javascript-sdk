@@ -38,6 +38,9 @@ export var buildImpressionEvent = function(config) {
   var configObj = config.configObj;
   var experimentKey = config.experimentKey;
   var variationKey = config.variationKey;
+  var flagKey = config.ruleKey;
+  var ruleKey = config.flagKey;
+  var ruleType = config.ruleType;
   var userId = config.userId;
   var userAttributes = config.userAttributes;
   var clientEngine = config.clientEngine;
@@ -79,6 +82,13 @@ export var buildImpressionEvent = function(config) {
     variation: {
       id: variationId,
       key: variationKey,
+    },
+
+    metadata: {
+      flagKey: flagKey,
+      ruleKey: ruleKey,
+      ruleType: ruleType,
+      variationKey: variationKey,
     },
   };
 };

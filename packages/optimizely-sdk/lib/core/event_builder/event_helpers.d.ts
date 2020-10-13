@@ -63,6 +63,13 @@ interface ImpressionEvent {
       id: string;
       key: string;
   } | null;
+
+  metadata: {
+    flagKey: string;
+    ruleKey: string;
+    ruleType: string;
+    variationKey: string;
+  };
 }
 
 interface ConversionConfig {
