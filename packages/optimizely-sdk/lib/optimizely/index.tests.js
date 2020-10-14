@@ -2298,6 +2298,12 @@ describe('lib/optimizely', function() {
                         campaign_id: '4',
                         experiment_id: '111127',
                         variation_id: '111129',
+                        metadata: {
+                          flag_key: '',
+                          rule_key: "testExperiment",
+                          rule_type: "experiment",
+                          variation_key: "variation",
+                        },
                       },
                     ],
                     events: [
@@ -2353,6 +2359,12 @@ describe('lib/optimizely', function() {
                         campaign_id: '4',
                         experiment_id: '111127',
                         variation_id: '111129',
+                        metadata: {
+                          flag_key: '',
+                          rule_key: "testExperiment",
+                          rule_type: "experiment",
+                          variation_key: "variation",
+                        },
                       },
                     ],
                     events: [
