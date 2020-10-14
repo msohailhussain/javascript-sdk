@@ -57,6 +57,10 @@ export interface ImpressionEvent extends BaseEvent {
     id: string
     key: string
   } | null
+
+  ruleKey: string
+  flagKey: string
+  ruleType: string
 }
 
 export interface ConversionEvent extends BaseEvent {
