@@ -51,7 +51,7 @@ namespace Visitor {
     flag_key: string;
     rule_key: string;
     rule_type: string;
-    variation_key: string | undefined;
+    variation_key: string | null;
   }
 
   export type SnapshotEvent = {
@@ -147,7 +147,7 @@ function makeDecisionSnapshot(event: ImpressionEvent): Visitor.Snapshot {
   let layerId = layer ? layer.id : null
   let experimentId = experiment ? experiment.id : null
   let variationId = variation ? variation.id : null
-  let variationKey = variation?.key
+  let variationKey = variation ? variation.key : null
 
   return {
     decisions: [
