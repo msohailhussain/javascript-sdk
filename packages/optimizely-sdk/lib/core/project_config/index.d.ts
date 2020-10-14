@@ -19,7 +19,7 @@ import { FeatureFlag, FeatureVariable, Experiment, Variation  } from './entities
 export interface ProjectConfig {
   revision: string;
   projectId: string;
-  sendFlagDecisions: boolean;
+  sendFlagDecisions?: boolean;
   experimentKeyMap:{[key: string]: Experiment};
   featureKeyMap: {
     [key: string]: FeatureFlag

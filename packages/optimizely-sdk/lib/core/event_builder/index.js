@@ -39,6 +39,7 @@ function getCommonEventParams(options) {
   var configObj = options.configObj;
   var anonymize_ip = configObj.anonymizeIP;
   var botFiltering = configObj.botFiltering;
+
   if (anonymize_ip === null || anonymize_ip === undefined) {
     anonymize_ip = false;
   }

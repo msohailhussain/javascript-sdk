@@ -91,7 +91,6 @@ describe('lib/event_builder/event_helpers', function() {
             clientVersion: '3.0.11',
             anonymizeIP: true,
             botFiltering: true,
-            sendFlagDecisions: false
           },
 
           user: {
@@ -163,7 +162,6 @@ describe('lib/event_builder/event_helpers', function() {
             clientName: 'node',
             clientVersion: '3.0.11',
             anonymizeIP: false,
-            sendFlagDecisions: false,
             botFiltering: undefined,
           },
 

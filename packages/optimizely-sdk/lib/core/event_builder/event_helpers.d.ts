@@ -40,7 +40,6 @@ type EventContext = {
   clientName: string;
   clientVersion: string;
   anonymizeIP: boolean;
-  sendFlagDecisions: boolean;
   botFiltering: boolean | undefined;
 }
 

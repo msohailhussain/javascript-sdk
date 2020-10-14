@@ -67,7 +67,6 @@ export var buildImpressionEvent = function(config) {
       clientName: clientEngine,
       clientVersion: clientVersion,
       anonymizeIP: configObj.anonymizeIP || false,
-      sendFlagDecisions: configObj.sendFlagDecisions || false,
       botFiltering: configObj.botFiltering,
     },
 
