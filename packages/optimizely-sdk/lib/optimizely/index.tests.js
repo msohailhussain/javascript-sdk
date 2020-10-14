@@ -330,6 +330,12 @@ describe('lib/optimizely', function() {
                         campaign_id: '4',
                         experiment_id: '111127',
                         variation_id: '111129',
+                        metadata: {
+                          flag_key: '',
+                          rule_key: 'testExperiment',
+                          rule_type: 'experiment',
+                          variation_key: 'variation',
+                        },
                       },
                     ],
                     events: [
@@ -383,6 +389,13 @@ describe('lib/optimizely', function() {
                         campaign_id: '5',
                         experiment_id: '122227',
                         variation_id: '122229',
+                        metadata: {
+                          flag_key: '',
+                          rule_key: 'testExperimentWithAudiences',
+                          rule_type: 'experiment',
+                          variation_key: 'variationWithAudience',
+                        },
+
                       },
                     ],
                     events: [
@@ -441,6 +454,12 @@ describe('lib/optimizely', function() {
                         campaign_id: '5',
                         experiment_id: '122227',
                         variation_id: '122229',
+                        metadata: {
+                          flag_key: '',
+                          rule_key: 'testExperimentWithAudiences',
+                          rule_type: 'experiment',
+                          variation_key: 'variationWithAudience',
+                        },
                       },
                     ],
                     events: [
@@ -504,6 +523,12 @@ describe('lib/optimizely', function() {
                         campaign_id: '5',
                         experiment_id: '122227',
                         variation_id: '122229',
+                        metadata: {
+                          flag_key: '',
+                          rule_key: 'testExperimentWithAudiences',
+                          rule_type: 'experiment',
+                          variation_key: 'variationWithAudience',
+                        },
                       },
                     ],
                     events: [
@@ -596,6 +621,12 @@ describe('lib/optimizely', function() {
                         campaign_id: '2',
                         experiment_id: '443',
                         variation_id: '662',
+                        metadata: {
+                          flag_key: '',
+                          rule_key: 'groupExperiment2',
+                          rule_type: 'experiment',
+                          variation_key: 'var2exp2',
+                        },
                       },
                     ],
                     events: [
@@ -647,6 +678,12 @@ describe('lib/optimizely', function() {
                         campaign_id: '1',
                         experiment_id: '442',
                         variation_id: '552',
+                        metadata: {
+                          flag_key: '',
+                          rule_key: 'groupExperiment1',
+                          rule_type: 'experiment',
+                          variation_key: 'var2exp1',
+                        },
                       },
                     ],
                     events: [
@@ -4425,6 +4462,12 @@ describe('lib/optimizely', function() {
                             campaign_id: '594093',
                             experiment_id: '594098',
                             variation_id: '594096',
+                            metadata: {
+                              flag_key: 'test_feature_for_experiment',
+                              rule_key: 'testing_my_feature',
+                              rule_type: 'feature-test',
+                              variation_key: 'variation',
+                            },
                           },
                         ],
                         events: [
@@ -4638,6 +4681,12 @@ describe('lib/optimizely', function() {
                             campaign_id: '599023',
                             experiment_id: '599028',
                             variation_id: '599027',
+                            metadata: {
+                              flag_key: 'shared_feature',
+                              rule_key: 'test_shared_feature',
+                              rule_type: 'feature-test',
+                              variation_key: 'control',
+                            },
                           },
                         ],
                         events: [
@@ -7371,6 +7420,12 @@ describe('lib/optimizely', function() {
                         campaign_id: '4',
                         experiment_id: '111127',
                         variation_id: '111129',
+                        metadata: {
+                          flag_key: '',
+                          rule_key: 'testExperiment',
+                          rule_type: 'experiment',
+                          variation_key: 'variation',
+                        },
                       },
                     ],
                     events: [
@@ -7459,6 +7514,12 @@ describe('lib/optimizely', function() {
                         campaign_id: '4',
                         experiment_id: '111127',
                         variation_id: '111129',
+                        metadata: {
+                          flag_key: '',
+                          rule_key: 'testExperiment',
+                          rule_type: 'experiment',
+                          variation_key: 'variation',
+                        },
                       },
                     ],
                     events: [
@@ -7530,6 +7591,12 @@ describe('lib/optimizely', function() {
                         campaign_id: '4',
                         experiment_id: '111127',
                         variation_id: '111129',
+                        metadata: {
+                          flag_key: '',
+                          rule_key: 'testExperiment',
+                          rule_type: 'experiment',
+                          variation_key: 'variation',
+                        },
                       },
                     ],
                     events: [
