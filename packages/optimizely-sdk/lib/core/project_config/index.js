@@ -609,7 +609,7 @@ export var tryCreatingProjectConfig = function(config) {
  * @return {boolean}         A boolean value that indicates if we should send flag decisions
  */
 export var getSendFlagDecisionsValue = function(projectConfig) {
-  return projectConfig.sendFlagDecisions;
+  return !!projectConfig.sendFlagDecisions;
 }
 
 export default {

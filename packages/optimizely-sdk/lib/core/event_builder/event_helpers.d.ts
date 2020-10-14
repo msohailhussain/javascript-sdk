@@ -18,7 +18,7 @@ import { EventTags, UserAttributes } from '../../shared_types';
 
 interface ImpressionConfig {
   experimentKey: string;
-  variationKey: string | undefined;
+  variationKey: string | null;
   flagKey: string;
   // ruleKey: string;
   ruleType: string;

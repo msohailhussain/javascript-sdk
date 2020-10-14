@@ -276,7 +276,7 @@ export default class Optimizely {
    */
   private sendImpressionEvent(
     experimentKey: string,
-    variationKey: string | undefined,
+    variationKey: string | null,
     flagKey: string,
     // ruleKey: string,
     ruleType: string,
@@ -316,7 +316,7 @@ export default class Optimizely {
    */
   private emitNotificationCenterActivate(
     experimentKey: string,
-    variationKey: string | undefined,
+    variationKey: string | null,
     flagKey: string,
     ruleType: string,
     userId: string,
@@ -682,9 +682,13 @@ export default class Optimizely {
         if (decision.experiment !== null) {
           experimentKey = decision.experiment.key;
         }
+        let variationKey = null;
+        if (variation) {
+          variationKey = variation.key
+        }
         this.sendImpressionEvent(
           experimentKey,
-          decision.variation?.key,
+          variationKey,
           feature.key,
           decision.decisionSource,
           userId,
