@@ -2911,7 +2911,10 @@ describe('lib/optimizely', function() {
                 });
               });
 
-              it('should return false and send notification', function() {
+              it('should return false and send notification when sendFlagDecisions is not defined', function() {
+                var newConfig = optlyInstance.projectConfigManager.getConfig();
+                newConfig.sendFlagDecisions = undefined;
+                optlyInstance.projectConfigManager.getConfig.returns(newConfig);
                 var result = optlyInstance.isFeatureEnabled('test_feature', 'user1');
                 assert.strictEqual(result, false);
                 sinon.assert.calledWith(decisionListener, {
@@ -2925,6 +2928,47 @@ describe('lib/optimizely', function() {
                     sourceInfo: {},
                   },
                 });
+              });
+
+              it('should return false and send notification when sendFlagDecisions is set to false', function() {
+                var newConfig = optlyInstance.projectConfigManager.getConfig();
+                newConfig.sendFlagDecisions = false;
+                optlyInstance.projectConfigManager.getConfig.returns(newConfig);
+                var result = optlyInstance.isFeatureEnabled('test_feature', 'user1');
+                assert.strictEqual(result, false);
+                sinon.assert.calledWith(decisionListener, {
+                  type: DECISION_NOTIFICATION_TYPES.FEATURE,
+                  userId: 'user1',
+                  attributes: {},
+                  decisionInfo: {
+                    featureKey: 'test_feature',
+                    featureEnabled: false,
+                    source: DECISION_SOURCES.ROLLOUT,
+                    sourceInfo: {},
+                  },
+                });
+              });
+
+              it('should return false and dispatch an impression event when sendFlagDecisions is set to true', function() {
+                var newConfig = optlyInstance.projectConfigManager.getConfig();
+                newConfig.sendFlagDecisions = true;
+                optlyInstance.projectConfigManager.getConfig.returns(newConfig);
+                var result = optlyInstance.isFeatureEnabled('test_feature', 'user1');
+                assert.strictEqual(result, false);
+
+                var feature = optlyInstance.projectConfigManager.getConfig().featureKeyMap.test_feature;
+                // sinon.assert.calledOnce(eventDispatcher.dispatchEvent);
+                // sinon.assert.calledWith(decisionListener, {
+                //   type: DECISION_NOTIFICATION_TYPES.FEATURE,
+                //   userId: 'user1',
+                //   attributes: {},
+                //   decisionInfo: {
+                //     featureKey: 'test_feature',
+                //     featureEnabled: false,
+                //     source: DECISION_SOURCES.ROLLOUT,
+                //     sourceInfo: {},
+                //   },
+                // });
               });
             });
           });

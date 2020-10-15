@@ -278,7 +278,6 @@ export default class Optimizely {
     experimentKey: string,
     variationKey: string | null,
     flagKey: string,
-    // ruleKey: string,
     ruleType: string,
     userId: string,
     attributes?: UserAttributes
@@ -292,7 +291,6 @@ export default class Optimizely {
       experimentKey: experimentKey,
       variationKey: variationKey,
       flagKey: flagKey,
-      // ruleKey: ruleKey,
       ruleType: ruleType,
       userId: userId,
       userAttributes: attributes,
